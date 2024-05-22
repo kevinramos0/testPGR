@@ -1,0 +1,68 @@
+<p-button (click)="showDialog()" label="Nueva empresa" />
+<p-dialog
+  header="Crear Empresa"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '25rem' }"
+>
+  <form [formGroup]="formEmpresas">
+    <div class="flex flex-column gap-2 mt-3">
+      <label for="nombre">Nombre</label>
+      <input
+        pInputText
+        id="nombre"
+        aria-describedby="nombre-help"
+        formControlName="nombre"
+      />
+      <div
+        *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="nombre.errors?.['required']">
+          <span class="text-red-500"> Nombre es requirido </span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column gap-2 mt-3">
+      <label for="telefono">Telefono</label>
+      <input
+        id="telefono"
+        aria-describedby="telefono-help"
+        formControlName="telefono"
+      />
+      <div
+        *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="telefono.errors?.['required']">
+          <span class="text-red-500"> Telefono es requirido. </span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column gap-2 mt-3">
+      <label for="direccion">Dirección</label>
+      <input
+        pInputText
+        id="direccion"
+        aria-describedby="direccion-help"
+        formControlName="direccion"
+      />
+      <div
+        *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="direccion.errors?.['required']">
+          <span class="text-red-500"> Dirección es requirido. </span>
+        </div>
+      </div>
+    </div>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      size="small"
+      (click)="saveEmpresa()"
+      class="p-button-success"
+    ></button>
+  </form>
+</p-dialog>

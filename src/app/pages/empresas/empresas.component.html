@@ -1,0 +1,35 @@
+<div class="flex flex-column">
+  <div class="flex justify-content-star mt-3">
+    <app-create-empresa (created)="getEmpresas()"></app-create-empresa>
+  </div>
+  <div class="flex">
+    <div class="card">
+      <p-table [value]="listEmpresas" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Id</th> 
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Dirección</th>
+            <th style="width: 5rem"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-empresa>
+          <tr>
+            <td>{{ empresa.id }}</td>
+            <td>{{ empresa.nombre }}</td>
+            <td>{{ empresa.telefono }}</td>
+            <td>{{ empresa.direccion }}</td>
+            <td>
+                <div class="flex justify-content-between">
+                    <p-button rounded icon="pi pi-times" severity="danger" size="small" (click)="deleteEmpresa(empresa.id)" />
+                
+                    <p-button class="mx-2" rounded icon="pi pi-pencil" severity="warning" size="small" (click)="getEmpresaItem(empresa)" />
+                </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

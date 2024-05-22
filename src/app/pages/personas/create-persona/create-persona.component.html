@@ -1,0 +1,80 @@
+<p-button (click)="showDialog()" label="Nueva empresa" />
+<p-dialog
+  header="Crear Empresa"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '25rem' }"
+>
+  <form [formGroup]="formPersona">
+    <div class="flex flex-column gap-2 mt-3">
+      <label for="nombre">Nombre</label>
+      <input
+        pInputText
+        id="nombre"
+        aria-describedby="nombre-help"
+        formControlName="nombre"
+      />
+      <div
+        *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="nombre.errors?.['required']">
+          <span class="text-red-500"> Nombre es requirido </span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column gap-2 mt-3">
+      <label for="apellido">Apellido</label>
+      <input
+        id="apellido"
+        aria-describedby="apellido-help"
+        formControlName="apellido"
+      />
+      <div
+        *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="apellido.errors?.['required']">
+          <span class="text-red-500"> Apellido es requirido. </span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column gap-2 mt-3">
+      <label for="fechaNacimiento">Fecha Nacimiento</label>
+        <p-calendar formControlName="fechaNacimiento" />
+      <div
+        *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="fechaNacimiento.errors?.['required']">
+          <span class="text-red-500"> Fecha Nacimiento es requirido. </span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column gap-2 mt-3">
+        <label for="ocupacion">ocupacion</label>
+        <input
+          pInputText
+          id="ocupacion"
+          aria-describedby="ocupacion-help"
+          formControlName="ocupacion"
+        />
+        <div
+          *ngIf="ocupacion.invalid && (ocupacion.dirty || ocupacion.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="ocupacion.errors?.['required']">
+            <span class="text-red-500"> ocupacion es requirido. </span>
+          </div>
+        </div>
+      </div>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      size="small"
+      (click)="saveEmpresa()"
+      class="p-button-success"
+    ></button>
+  </form>
+</p-dialog>

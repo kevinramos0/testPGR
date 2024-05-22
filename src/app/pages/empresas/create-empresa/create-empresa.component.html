@@ -25,10 +25,10 @@
     </div>
     <div class="flex flex-column gap-2 mt-3">
       <label for="telefono">Telefono</label>
-      <input
-        id="telefono"
-        aria-describedby="telefono-help"
+      <p-inputMask
+        mask="503-00000000"
         formControlName="telefono"
+        placeholder="503-00000000"
       />
       <div
         *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
@@ -62,7 +62,7 @@
       label="Guardar"
       size="small"
       (click)="saveEmpresa()"
-      class="p-button-success"
+      class="p-button-success mt-2"
     ></button>
   </form>
 </p-dialog>
